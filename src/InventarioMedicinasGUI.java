@@ -44,55 +44,49 @@ public class InventarioMedicinasGUI extends JFrame {
 
         // Acción del botón "Agregar Medicina al Inventario"
         agregarMedicinaButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarAgregarMedicinaDialog();
+                agregarMedicina();
             }
         });
 
         // Acción del botón "Ver Inventario"
         verInventarioButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarInventarioDialog();
+                inventario();
             }
         });
 
         // Acción del botón "Agregar Receta Médica"
         agregarRecetaButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarAgregarRecetaDialog();
+                agregarReceta();
             }
         });
 
         // Acción del botón "Despachar Receta Médica"
         despacharRecetaButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarDespacharRecetaDialog();
+                despacharReceta();
             }
         });
-        // Acción del botón "Salir"
-
     }
 
-    private void mostrarAgregarMedicinaDialog() {
-        JTextField nombreField = new JTextField();
-        JTextField cantidadField = new JTextField();
+    private void agregarMedicina() {
+        JTextField ingresarNombre= new JTextField();
+        JTextField ingresarCantidad= new JTextField();
 
         JPanel panel = new JPanel(new GridLayout(2, 2));
         panel.add(new JLabel("Nombre:"));
-        panel.add(nombreField);
+        panel.add(ingresarNombre);
         panel.add(new JLabel("Cantidad:"));
-        panel.add(cantidadField);
+        panel.add(ingresarCantidad);
 
         int result = JOptionPane.showConfirmDialog(null, panel, "Agregar Medicina al Inventario",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == JOptionPane.OK_OPTION) {
-            String nombre = nombreField.getText();
-            int cantidad = Integer.parseInt(cantidadField.getText());
+            String nombre = ingresarNombre.getText();
+            int cantidad = Integer.parseInt(ingresarCantidad.getText());
 
             if (inventario.containsKey(nombre)) {
                 int cantidadExistente = inventario.get(nombre);
@@ -105,7 +99,7 @@ public class InventarioMedicinasGUI extends JFrame {
         }
     }
 
-    private void mostrarInventarioDialog() {
+    private void inventario() {
         if (inventario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El inventario está vacío.");
             return;
@@ -125,13 +119,12 @@ public class InventarioMedicinasGUI extends JFrame {
                 JOptionPane.PLAIN_MESSAGE);
     }
 
-    private void mostrarAgregarRecetaDialog() {
+    private void agregarReceta() {
         if (inventario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El inventario está vacío.");
             return;
         }
 
-        JTextField medicinaField = new JTextField();
         JTextField cantidadField = new JTextField();
         JTextField nombreClienteField = new JTextField();
         JTextField cedulaField = new JTextField();
@@ -180,7 +173,7 @@ public class InventarioMedicinasGUI extends JFrame {
         }
     }
 
-    private void mostrarDespacharRecetaDialog() {
+    private void despacharReceta() {
         if (inventario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El inventario está vacío.");
             return;
