@@ -10,11 +10,12 @@ import java.util.Map;
 public class InventarioMedicinasGUI extends JFrame {
     private Map<String, Integer> inventario;
     private List<RecetaMedica> listaRecetas;
-    private JMenu menu;
-    private JMenuItem agregarMedicinaItem;
-    private JMenuItem verInventarioItem;
-    private JMenuItem agregarRecetaItem;
-    private JMenuItem despacharRecetaItem;
+
+    private JButton agregarMedicinaButton;
+    private JButton verInventarioButton;
+    private JButton agregarRecetaButton;
+    private JButton despacharRecetaButton;
+
 
     public InventarioMedicinasGUI() {
         inventario = new HashMap<>();
@@ -25,64 +26,55 @@ public class InventarioMedicinasGUI extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLayout(new GridLayout(4, 1));
 
-        // Creación de la barra de menú
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
+        // Creación de los botones
+        agregarMedicinaButton = new JButton("Agregar Medicina al Inventario");
+        verInventarioButton = new JButton("Ver Inventario");
+        agregarRecetaButton = new JButton("Agregar Receta Médica");
+        despacharRecetaButton = new JButton("Despachar Receta Médica");
 
-        // Menú principal
-        menu = new JMenu("Menú");
-        menuBar.add(menu);
 
-        // Opción 1: Agregar Medicina al Inventario
-        agregarMedicinaItem = new JMenuItem("Agregar Medicina al Inventario");
-        agregarMedicinaItem.addActionListener(new ActionListener() {
+        // Agregar los botones a la ventana
+        add(agregarMedicinaButton);
+        add(verInventarioButton);
+        add(agregarRecetaButton);
+        add(despacharRecetaButton);
+
+
+        // Acción del botón "Agregar Medicina al Inventario"
+        agregarMedicinaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarAgregarMedicinaDialog();
             }
         });
-        menu.add(agregarMedicinaItem);
 
-        // Opción 2: Ver Inventario
-        verInventarioItem = new JMenuItem("Ver Inventario");
-        verInventarioItem.addActionListener(new ActionListener() {
+        // Acción del botón "Ver Inventario"
+        verInventarioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarInventarioDialog();
             }
         });
-        menu.add(verInventarioItem);
 
-        // Opción 3: Agregar Receta Médica
-        agregarRecetaItem = new JMenuItem("Agregar Receta Médica");
-        agregarRecetaItem.addActionListener(new ActionListener() {
+        // Acción del botón "Agregar Receta Médica"
+        agregarRecetaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarAgregarRecetaDialog();
             }
         });
-        menu.add(agregarRecetaItem);
 
-        // Opción 4: Despachar Receta Médica
-        despacharRecetaItem = new JMenuItem("Despachar Receta Médica");
-        despacharRecetaItem.addActionListener(new ActionListener() {
+        // Acción del botón "Despachar Receta Médica"
+        despacharRecetaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarDespacharRecetaDialog();
             }
         });
-        menu.add(despacharRecetaItem);
+        // Acción del botón "Salir"
 
-        // Opción 5: Salir
-        JMenuItem salirItem = new JMenuItem("Salir");
-        salirItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        menu.add(salirItem);
     }
 
     private void mostrarAgregarMedicinaDialog() {
